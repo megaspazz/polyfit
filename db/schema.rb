@@ -11,13 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140201063455) do
+ActiveRecord::Schema.define(version: 20140201102444) do
 
   create_table "exercises", force: true do |t|
     t.string   "name"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "video_file_name"
+    t.string   "video_content_type"
+    t.integer  "video_file_size"
+    t.datetime "video_updated_at"
   end
 
   create_table "regiment_exercises", force: true do |t|

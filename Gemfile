@@ -27,6 +27,12 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
+# Attach files (videos files for each exercise)
+gem 'paperclip'
+
+# NOTE: It's possible that the following gem is better with videos, but we must install 'ffmpeg' for it to work
+# gem 'paperclip-ffmpeg'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

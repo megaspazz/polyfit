@@ -19,7 +19,12 @@
     <%= f.label :description %><br>
     <%= f.text_area :description %>
   </div>
+  <div class="field">
+    <%= label_tag 'curr-video', @exercise.video.original_filename %><br>
+    <%= video_tag @exercise.video.url, controls: true, size: '320x240' %><br>
+    <%= f.label :video %>
+    <%= f.file_field :video %>
   <div class="actions">
-    <%= f.submit %>
+  <%= f.submit %>
   </div>
 <% end %>

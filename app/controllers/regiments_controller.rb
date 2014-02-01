@@ -70,7 +70,7 @@ class RegimentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def regiment_params
-      params.require(:regiment).permit(:name, :descriptions)
+      params.require(:regiment).permit(:name, :description)
     end
 
     def exercise_list_param
