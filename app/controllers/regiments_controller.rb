@@ -25,7 +25,7 @@ class RegimentsController < ApplicationController
   # POST /regiments.json
   def create
     @regiment = Regiment.new(regiment_params)
-
+    update_regiment_exercises
     respond_to do |format|
       if @regiment.save
         format.html { redirect_to @regiment, notice: 'Regiment was successfully created.' }
@@ -42,6 +42,7 @@ class RegimentsController < ApplicationController
   def update
     respond_to do |format|
       if @regiment.update(regiment_params)
+        update_regiment_exercises
         format.html { redirect_to @regiment, notice: 'Regiment was successfully updated.' }
         format.json { head :no_content }
       else
@@ -69,6 +70,24 @@ class RegimentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def regiment_params
-      params.require(:regiment).permit(:name, :description)
+      params.require(:regiment).permit(:name, :descriptions)
+    end
+
+    def exercise_list_param
+      exercise_param = params.require(:regiment).permit(exercises: [])
+      return exercise_param[:exercises]
+    end
+
+    # Helper method to update the exercises in each regiment, given a list of the exercise_id's in params[:regiment][:exercises]
+    def update_regiment_exercises
+      regiment_exercises = []
+      exercise_list_param.each do |re|
+        puts("RE = #{re}")
+        if !re.empty?
+          exercise = Exercise.find(re)
+          regiment_exercises << exercise
+        end
+      end
+      @regiment.exercises = regiment_exercises
     end
 end

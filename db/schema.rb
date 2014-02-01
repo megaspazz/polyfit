@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 20140201063455) do
   end
 
   create_table "regiment_exercises", force: true do |t|
+    t.integer  "regiment_id"
+    t.integer  "exercise_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
