@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @regiment.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @regiment.description %>
+</p>
+
+<%= link_to 'Edit', edit_regiment_path(@regiment) %> |
+<%= link_to 'Back', regiments_path %>

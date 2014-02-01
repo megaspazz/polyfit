@@ -1,0 +1,29 @@
+<h1>Listing regiments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @regiments.each do |regiment| %>
+      <tr>
+        <td><%= regiment.name %></td>
+        <td><%= regiment.description %></td>
+        <td><%= link_to 'Show', regiment %></td>
+        <td><%= link_to 'Edit', edit_regiment_path(regiment) %></td>
+        <td><%= link_to 'Destroy', regiment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Regiment', new_regiment_path %>
