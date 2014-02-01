@@ -1,6 +1,6 @@
 Polyfit::Application.routes.draw do
   root to: 'static#index'
-  get '/test', to: 'static#test'
+  match '/test', to: 'static#test'
   
   resources :regiment_exercises
 

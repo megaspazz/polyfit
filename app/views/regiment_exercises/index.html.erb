@@ -1,0 +1,25 @@
+<h1>Listing regiment_exercises</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @regiment_exercises.each do |regiment_exercise| %>
+      <tr>
+        <td><%= link_to 'Show', regiment_exercise %></td>
+        <td><%= link_to 'Edit', edit_regiment_exercise_path(regiment_exercise) %></td>
+        <td><%= link_to 'Destroy', regiment_exercise, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Regiment exercise', new_regiment_exercise_path %>

@@ -1,4 +1,4 @@
 class Exercise < ActiveRecord::Base
   has_many :regimentExercises
-  has_many :regiments, through: :regiment_exercises
+  has_many :regiments, through: :regimentExercises
 end
