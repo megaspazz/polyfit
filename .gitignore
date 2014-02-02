@@ -17,3 +17,6 @@
 
 # Ignore the uploaded files from 'paperclip' gem since attachments can be quite large
 /public/system
+
+# Ignore the temporary files created by gedit (hopefully this doesn't match anythig important)
+*~
