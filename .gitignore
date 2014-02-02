@@ -17,4 +17,3 @@
 
 # Ignore the uploaded files from 'paperclip' gem since attachments can be quite large
 /public/system
-/public/system/*
