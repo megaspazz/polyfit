@@ -1,4 +1,8 @@
+<html>
 <h1>TEST PAGE</h1>
+
+<%= javascript_include_tag('jquery.dragoptions.js') %>
+
 
 <script>
   $(function() {
@@ -14,6 +18,12 @@ $(function(){
   // or disable some features
   //$(".multiselect").multiselect({sortable: false, searchable: false});
 });
+</script>
+
+<script>
+  $(document).ready(function(){
+    $("#select-single, #select-multiple").dragOptions();
+  });
 </script>
 
 <style>
@@ -144,4 +154,12 @@ $(function(){
 
 <select id="random" multiple="multiple">
   <option><div>Hi</div></option>
+</select>
+
+<select id="select-single" size="10" style="width: 200px;">
+  <option value="1">11</option>
+  <option value="2">22</option>
+  <option value="3">33</option>
+  <option value="4">44</option>
+  <option value="5">55</option>
 </select>
