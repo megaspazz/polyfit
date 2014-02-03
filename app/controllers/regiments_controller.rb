@@ -73,19 +73,18 @@ class RegimentsController < ApplicationController
       params.require(:regiment).permit(:name, :description)
     end
 
+    # Returns a list of the exercise id's in the form of an array (will never be nil)
     def exercise_list_param
       exercise_param = params.require(:regiment).permit(exercises: [])
-      return exercise_param[:exercises]
+      return exercise_param[:exercises].to_a
     end
 
     # Helper method to update the exercises in each regiment, given a list of the exercise_id's in params[:regiment][:exercises]
     def update_regiment_exercises
       regiment_exercises = []
       exercise_list_param.each do |re|
-        if !re.empty?
-          exercise = Exercise.find(re)
-          regiment_exercises << exercise
-        end
+        exercise = Exercise.find(re)
+        regiment_exercises << exercise
       end
       @regiment.exercises = regiment_exercises
     end
