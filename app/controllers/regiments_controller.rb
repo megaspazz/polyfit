@@ -24,8 +24,6 @@ class RegimentsController < ApplicationController
   # POST /regiments
   # POST /regiments.json
   def create
-    puts("CREATE")
-    puts(params)
     @regiment = Regiment.new(regiment_params)
     update_regiment_exercises
     respond_to do |format|
@@ -76,9 +74,9 @@ class RegimentsController < ApplicationController
     end
 
     # Returns a list of the exercise id's in the form of an array (will never be nil)
+    # Since it doesn't use the require/permit stuff, I am not sure how safe it is...
     def exercise_list_param
-      exercise_param = params.require(:regiment).permit(exercises: [])
-      return exercise_param[:exercises].to_a
+      return params[:exercises].to_a
     end
 
     # Helper method to update the exercises in each regiment, given a list of the exercise_id's in params[:regiment][:exercises]

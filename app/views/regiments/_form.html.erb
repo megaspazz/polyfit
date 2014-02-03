@@ -20,7 +20,7 @@
     <%= f.text_area :description %>
   </div>
 
-  <%= f.select :exercises, Exercise.all.collect { |x| [x.name, x.id, selected: @regiment.exercises.include?(x)] }, { include_hidden: false }, multiple: true %>
+  <%= select_tag :exercises, options_for_select(Exercise.all.collect { |x| [x.name, x.id, selected: @regiment.exercises.include?(x)] }), { include_hidden: false, multiple: true } %>
 
   <div class="actions">
     <%= f.submit %>
