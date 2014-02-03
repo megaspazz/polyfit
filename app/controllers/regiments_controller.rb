@@ -82,7 +82,6 @@ class RegimentsController < ApplicationController
     def update_regiment_exercises
       regiment_exercises = []
       exercise_list_param.each do |re|
-        puts("RE = #{re}")
         if !re.empty?
           exercise = Exercise.find(re)
           regiment_exercises << exercise
