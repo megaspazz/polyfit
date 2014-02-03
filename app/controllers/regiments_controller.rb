@@ -24,6 +24,8 @@ class RegimentsController < ApplicationController
   # POST /regiments
   # POST /regiments.json
   def create
+    puts("CREATE")
+    puts(params)
     @regiment = Regiment.new(regiment_params)
     update_regiment_exercises
     respond_to do |format|
@@ -80,12 +82,11 @@ class RegimentsController < ApplicationController
     end
 
     # Helper method to update the exercises in each regiment, given a list of the exercise_id's in params[:regiment][:exercises]
+    # Note that the orders will be zero-indexed
     def update_regiment_exercises
-      regiment_exercises = []
-      exercise_list_param.each do |re|
-        exercise = Exercise.find(re)
-        regiment_exercises << exercise
+      exercise_list_param.each_with_index do |re_id, i|
+        exercise = Exercise.find(re_id)
+        RegimentExercise.create!(regiment: @regiment, exercise: exercise, order: i, reps: 0);
       end
-      @regiment.exercises = regiment_exercises
     end
 end

@@ -33,6 +33,9 @@ gem 'paperclip'
 # NOTE: It's possible that the following gem is better with videos, but we must install 'ffmpeg' for it to work
 # gem 'paperclip-ffmpeg'
 
+# Beautiful UI elements using jquery
+gem 'jquery-ui-rails'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
