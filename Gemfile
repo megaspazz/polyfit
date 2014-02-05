@@ -43,13 +43,13 @@ end
 
 # Use rspec for testing
 group :development, :test do
-	gem 'sqlite3'
-	gem 'rspec-rails'
+  gem 'sqlite3'
+  gem 'rspec-rails'
 end
 
 # Capybara for testing
 group :test do
-	gem 'capybara'
+  gem 'capybara'
 end
 
 # Use ActiveModel has_secure_password
