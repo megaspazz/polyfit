@@ -4,4 +4,8 @@ class User < ActiveRecord::Base
 
   VALID_EMAIL_REGIX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGIX }, uniqueness: { case_sensitive: false }
+
+  has_secure_password
+  #minimum password length is 5
+  validates :password, length: { minimum: 5}
 end
