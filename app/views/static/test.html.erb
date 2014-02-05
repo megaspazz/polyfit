@@ -42,7 +42,7 @@ $("#cart ol").sortable({
     items: "li:not(.placeholder)",
     connectWith: "li",
     start: function(event, ui) {
-      var init_index = ui.item.index();
+      var init_index = ui.item[0].value;
       ui.item.data('init_index', init_index);
     },
     sort: function () {
@@ -88,9 +88,9 @@ $("#cart ol").sortable({
 <div id="products">
   <h1 class="ui-widget-header">Products</h1>
   <ul id="catalog">
-    <li value="3">Lolcat Shirt</li>
+    <li value="1">Lolcat Shirt</li>
     <li value="2">Cheezeburger Shirt</li>
-    <li>Buckit Shirt</li>
+    <li value="3">Buckit Shirt</li>
   </ul>
 </div>
  
@@ -102,3 +102,11 @@ $("#cart ol").sortable({
     </ol>
   </div>
 </div>
+
+<%= form_for(@regiment) do |f| %>
+  <%= select_tag :exercises, options_for_select(Exercise.all.collect { |x| [x.name, x.id, selected: @regiment.exercises.include?(x)] }), { include_hidden: false, multiple: true } %>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

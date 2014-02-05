@@ -1,3 +1,9 @@
+<script>
+  $(function() {
+    $("#accordion").accordion();
+  });
+</script>
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -9,6 +15,20 @@
   <strong>Description:</strong>
   <%= @regiment.description %>
 </p>
+
+<div id="accordion">
+  <% @regiment.exercises.each_with_index do |exercise, i| %>
+    <h3><%= "#{i}) #{exercise.name}" %></h3>
+    <div>
+      <p>
+        <%= exercise.description %>
+      </p>
+      <p>
+        <%= video_tag exercise.video.url, controls: true, size: '320x240' %>
+      </p>
+    </div>
+  <% end %>
+</div>
 
 <%= link_to 'Edit', edit_regiment_path(@regiment) %> |
 <%= link_to 'Back', regiments_path %>
