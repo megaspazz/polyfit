@@ -69,6 +69,6 @@ class RegimentRequestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def regiment_request_params
-      params.require(:regiment_request).permit(:opt1, :opt2, :opt3, :opt4, :opt5, :opt6, :opt7)
+      params.require(:regiment_request).permit(:opt0, :opt1, :opt2, :opt3, :opt4, :opt5, :opt6, :opt7)
     end
 end
