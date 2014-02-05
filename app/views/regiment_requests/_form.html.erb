@@ -1,0 +1,49 @@
+<%= form_for(@regiment_request) do |f| %>
+  <% if @regiment_request.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@regiment_request.errors.count, "error") %> prohibited this regiment_request from being saved:</h2>
+
+      <ul>
+      <% @regiment_request.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :opt0 %><br>
+    <%= f.text_field :opt0 %>
+  </div>
+  <div class="field">
+    <%= f.label :opt1 %><br>
+    <%= f.text_field :opt1 %>
+  </div>
+  <div class="field">
+    <%= f.label :opt2 %><br>
+    <%= f.text_field :opt2 %>
+  </div>
+  <div class="field">
+    <%= f.label :opt3 %><br>
+    <%= f.text_field :opt3 %>
+  </div>
+  <div class="field">
+    <%= f.label :opt4 %><br>
+    <%= f.text_field :opt4 %>
+  </div>
+  <div class="field">
+    <%= f.label :opt5 %><br>
+    <%= f.text_field :opt5 %>
+  </div>
+  <div class="field">
+    <%= f.label :opt6 %><br>
+    <%= f.text_field :opt6 %>
+  </div>
+  <div class="field">
+    <%= f.label :opt7 %><br>
+    <%= f.text_field :opt7 %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

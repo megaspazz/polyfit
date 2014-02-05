@@ -1,0 +1,93 @@
+<h1>New regiment_request</h1>
+
+<!-- Cause for onload event -->
+<body onload="_onload();"/>
+
+<script type="text/javascript">
+  // define some global variables
+  var TOTAL_OPTS = 8;
+  var curr_opt = 0;
+
+  var OPT_TREE;
+
+  // declare the Tree datatype
+  function Tree(parent, children, id, data) {
+    this.parent = parent;
+    this.children = children || [];
+    this.id = id;
+    this.data = data;
+
+    this.addChild = function(tree) {
+      this.children.push(tree);
+    }
+
+    this.addChildren = function(trees) {
+      this.children.concat(trees);
+    }
+
+    this.getChildById = function(id) {
+      for (child in children) {
+        if (child.id == id) {
+          return child;
+        }
+      }
+      return null;
+    }
+  }
+
+  // do something when the page loads
+  function _onload()
+  {
+    // instantiate the option tree (root node)
+    OPT_TREE = Tree(null, null, "ROOT", null);
+
+    // define the first level of the tree
+    var SEL_0_0 = Tree(OPT_TREE, null, "Select 0.0", null);
+    var SEL_0_1 = Tree(OPT_TREE, null, "Select 0.1", null);
+    var SEL_0_2 = Tree(OPT_TREE, null, "Select 0.2", null);
+
+    // define the second level of the tree
+    var SEL_0_0_0 = Tree(SEL_0_0, null, "Select 0.0.0", null);
+    var SEL_0_0_1 = Tree(SEL_0_0, null, "Select 0.0.1", null);
+    var SEL_0_1_0 = Tree(SEL_0_1, null, "Select 0.1.0", null);
+    var SEL_0_1_1 = Tree(SEL_0_1, null, "Select 0.1.1", null);
+    var SEL_0_2_0 = Tree(SEL_0_2, null, "Select 0.2.0", null);
+    var SEL_0_2_1 = Tree(SEL_0_2, null, "Select 0.2.1", null);
+    var SEL_0_2_2 = Tree(SEL_0_2, null, "Select 0.2.2", null);
+
+    //OPT_TREE.addChildren([SEL_0_0, SEL_0_1, SEL_0_2]);
+
+    //SEL_0_0.addChildren([SEL_0_0_0, SEL_0_0_1]);
+    //SEL_0_1.addChildren([SEL_0_1_0, SEL_0_1_1]);
+    //SEL_0_2.addChildren([SEL_0_2_0, SEL_0_2_1, SEL_0_2_2]);
+  }
+
+  function update_opts(caller_id) {
+    var opt_id = "input[id$='opt" + curr_opt + "']";
+    var caller = $("#" + caller_id);
+    var sel_txt = caller.find(".sel-text").text();
+    var elt = $(opt_id);
+    elt.val(sel_txt);
+    curr_opt = Math.min(curr_opt + 1, TOTAL_OPTS);
+  }
+
+  function back() {
+    curr_opt = Math.max(curr_opt - 1, 0);
+    var opt_id = "input[id$='opt" + curr_opt + "']";
+    $(opt_id).val('');
+  }
+</script>
+
+<% for i in 0..5 do %>
+  <div id="<%= "sel#{i}" %>" onclick="update_opts(this.id);">
+    <p class="sel-text">Option <%= "#{i}" %></p>
+  </div>
+<% end %>
+
+<div onclick="back();">
+  <p>Back</p>
+</div>
+
+<%= render 'form' %>
+
+<%= link_to 'Back', regiment_requests_path %>
