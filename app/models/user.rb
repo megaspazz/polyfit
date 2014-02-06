@@ -1,11 +1,15 @@
 class User < ActiveRecord::Base
+  has_many :user_favorites
+  has_many :regiments, through: :user_favorites
+
   validates :firstName, presence: true
   validates :lastName, presence: true
 
-  VALID_EMAIL_REGIX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, format: { with: VALID_EMAIL_REGIX }, uniqueness: { case_sensitive: false }
+  # Use a regex to validate the email
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
 
+  # minimum password length is 5
   has_secure_password
-  #minimum password length is 5
-  validates :password, length: { minimum: 5}
+  validates :password, length: { minimum: 5 }
 end

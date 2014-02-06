@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140205055525) do
+ActiveRecord::Schema.define(version: 20140206025412) do
 
   create_table "exercises", force: true do |t|
     t.string   "name"
@@ -53,18 +53,25 @@ ActiveRecord::Schema.define(version: 20140205055525) do
     t.datetime "updated_at"
   end
 
+  create_table "user_favorites", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "regiment_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "firstName"
     t.string   "lastName"
     t.string   "email"
     t.integer  "age",                   limit: 1
     t.integer  "gender",                limit: 1
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "username"
     t.string   "password"
     t.string   "password_confirmation"
     t.string   "password_digest"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

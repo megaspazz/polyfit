@@ -1,4 +1,6 @@
 Polyfit::Application.routes.draw do
+  resources :user_favorites
+
   resources :regiment_requests
 
   root to: 'static#index'
