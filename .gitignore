@@ -18,5 +18,8 @@
 # Ignore the uploaded files from 'paperclip' gem since attachments can be quite large
 /public/system
 
-# Ignore the temporary files created by gedit (hopefully this doesn't match anythig important)
+# Ignore the temporary files created by gedit (hopefully this doesn't match anything important)
 *~
+
+# Ignore the Mac folder info files
+*.DS_Store
