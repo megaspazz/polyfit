@@ -5,6 +5,7 @@ Polyfit::Application.routes.draw do
 
   root to: 'static#index'
   get '/test', to: 'static#test'
+  get '/style', to: 'static#style'
   
   resources :regiment_exercises
 
