@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  opt1: MyString
+  opt2: MyString
+  opt3: MyString
+  opt4: MyString
+  opt5: MyString
+  opt6: MyString
+  opt7: MyString
+
+two:
+  opt1: MyString
+  opt2: MyString
+  opt3: MyString
+  opt4: MyString
+  opt5: MyString
+  opt6: MyString
+  opt7: MyString

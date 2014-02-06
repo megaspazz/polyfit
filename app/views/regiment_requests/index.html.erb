@@ -1,0 +1,41 @@
+<h1>Listing regiment_requests</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Opt0</th>
+      <th>Opt1</th>
+      <th>Opt2</th>
+      <th>Opt3</th>
+      <th>Opt4</th>
+      <th>Opt5</th>
+      <th>Opt6</th>
+      <th>Opt7</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @regiment_requests.each do |regiment_request| %>
+      <tr>
+        <td><%= regiment_request.opt0 %></td>
+        <td><%= regiment_request.opt1 %></td>
+        <td><%= regiment_request.opt2 %></td>
+        <td><%= regiment_request.opt3 %></td>
+        <td><%= regiment_request.opt4 %></td>
+        <td><%= regiment_request.opt5 %></td>
+        <td><%= regiment_request.opt6 %></td>
+        <td><%= regiment_request.opt7 %></td>
+        <td><%= link_to 'Show', regiment_request %></td>
+        <td><%= link_to 'Edit', edit_regiment_request_path(regiment_request) %></td>
+        <td><%= link_to 'Destroy', regiment_request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Regiment request', new_regiment_request_path %>

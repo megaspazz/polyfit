@@ -1,0 +1,157 @@
+<h1>New regiment_request</h1>
+
+<script type="text/javascript">
+  /* This section is (sometimes?) run immediately whent he page loads */
+
+  // define some global variables
+  var TOTAL_OPTS = 8;
+  var currOpt = 0;
+
+  // define the location in the tree
+  var currNode = treeInit();
+
+  // update the document
+  updateSelections();
+
+  /* ---------------------------------------------------------------- */
+
+  // force the selections to be updated when the page loads
+  window.onload = function() {
+    updateSelections();
+  }
+
+  // declare the Tree datatype
+  function Tree(parent, children, id, data) {
+    this.parent = parent;
+    this.children = children || [];
+    this.id = id;
+    this.data = data;
+
+    this.addChild = function(tree) {
+      this.children.push(tree);
+    }
+
+    this.addChildren = function(trees) {
+      this.children = this.children.concat(trees);
+    }
+
+    this.getChildById = function(id) {
+      for (var i = 0; i < this.children.length; i++) {
+        var child = this.children[i];
+        if (child.id == id) {
+          return child;
+        }
+      }
+      return null;
+    }
+  }
+
+  // initialize the decision tree right here, so we know what to display on each user input
+  function treeInit() {
+    // instantiate the option tree (root node)
+    var OPT_TREE = new Tree(null, null, "ROOT", null);
+
+    // define the first level of the tree
+    var SEL_0_0 = new Tree(OPT_TREE, null, "Select 0.0", null);
+    var SEL_0_1 = new Tree(OPT_TREE, null, "Select 0.1", null);
+    var SEL_0_2 = new Tree(OPT_TREE, null, "Select 0.2", null);
+
+    // define the second level of the tree
+    var SEL_0_0_0 = new Tree(SEL_0_0, null, "Select 0.0.0", null);
+    var SEL_0_0_1 = new Tree(SEL_0_0, null, "Select 0.0.1", null);
+    var SEL_0_1_0 = new Tree(SEL_0_1, null, "Select 0.1.0", null);
+    var SEL_0_1_1 = new Tree(SEL_0_1, null, "Select 0.1.1", null);
+    var SEL_0_2_0 = new Tree(SEL_0_2, null, "Select 0.2.0", null);
+    var SEL_0_2_1 = new Tree(SEL_0_2, null, "Select 0.2.1", null);
+    var SEL_0_2_2 = new Tree(SEL_0_2, null, "Select 0.2.2", null);
+    var SEL_0_2_3 = new Tree(SEL_0_2, null, "Select 0.2.2", null);
+
+    // add the children of the root
+    OPT_TREE.addChildren([SEL_0_0, SEL_0_1, SEL_0_2]);
+
+    // add the grandchildren of the root
+    SEL_0_0.addChildren([SEL_0_0_0, SEL_0_0_1]);
+    SEL_0_1.addChildren([SEL_0_1_0, SEL_0_1_1]);
+    SEL_0_2.addChildren([SEL_0_2_0, SEL_0_2_1, SEL_0_2_2, SEL_0_2_3]);
+
+    return OPT_TREE;
+  }
+
+  function updateOpts(callerId) {
+    if (currOpt > TOTAL_OPTS) {
+      return;
+    }
+    var selTxt = getSelObj(callerId).text();
+    var optElt = getOptObj(currOpt);
+    optElt.val(selTxt);
+    currOpt++;
+    treeDown(selTxt);
+    updateSelections();
+  }
+
+  function back() {
+    if (currOpt <= 0){
+      return;
+    }
+    currOpt--;
+    var opt_elt = getOptObj(currOpt);
+    opt_elt.val('');
+    treeUp();
+    updateSelections();
+  }
+
+  function treeDown(sel) {
+    currNode = currNode.getChildById(sel);
+  }
+
+  function treeUp() {
+    currNode = currNode.parent;
+  }
+
+  function updateSelections() {
+    if (currNode.children.length == 0) {
+      getForm().submit();
+    }
+
+    for (var i = 0; ; i++) {
+      var selElt = getSelObj(i);
+      if (selElt.length == 0) {
+        return;
+      }
+      if (i < currNode.children.length) {
+        selElt.text(currNode.children[i].id);
+        selElt.show();
+      } else {
+        selElt.hide();
+      }
+    }
+  }
+
+  function getOptObj(num) {
+    return $("input[id$='opt" + num + "']");
+  }
+
+  // id can either be a number, or in the form sel#
+  function getSelObj(id) {
+    var selId = "#" + ($.isNumeric(id) ? "sel" : "") + id;
+    return $(selId).find(".sel-text");
+  }
+
+  function getForm() {
+    return getOptObj(0)[0].form;
+  }
+</script>
+
+<% for i in 0..5 do %>
+  <div id="<%= "sel#{i}" %>" onclick="updateOpts(this.id);">
+    <p class="sel-text">Selection <%= "#{i}" %></p>
+  </div>
+<% end %>
+
+<div onclick="back();">
+  <p>Back</p>
+</div>
+
+<%= render 'form' %>
+
+<%= link_to 'Back', regiment_requests_path %>

@@ -1,0 +1,2 @@
+module RegimentRequestsHelper
+end

@@ -24,7 +24,8 @@
     <%= video_tag @exercise.video.url, controls: true, size: '320x240' %><br>
     <%= f.label :video %>
     <%= f.file_field :video %>
+  </div>
   <div class="actions">
-  <%= f.submit %>
+    <%= f.submit %>
   </div>
 <% end %>

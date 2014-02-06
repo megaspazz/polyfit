@@ -1,4 +1,6 @@
 Polyfit::Application.routes.draw do
+  resources :regiment_requests
+
   root to: 'static#index'
   get '/test', to: 'static#test'
   get '/signup', to: 'users#new'
