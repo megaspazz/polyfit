@@ -25,12 +25,12 @@ ActiveRecord::Schema.define(version: 20140205034935) do
   end
 
   create_table "regiment_exercises", force: true do |t|
+    t.integer  "order"
+    t.integer  "reps"
     t.integer  "regiment_id"
     t.integer  "exercise_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "order"
-    t.integer  "reps"
   end
 
   create_table "regiment_requests", force: true do |t|
