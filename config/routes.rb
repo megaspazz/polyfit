@@ -1,7 +1,8 @@
 Polyfit::Application.routes.draw do
   root to: 'static#index'
   get '/test', to: 'static#test'
-  
+  get '/signup', to: 'users#new'
+
   resources :regiment_exercises
 
   resources :regiments
