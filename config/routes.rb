@@ -1,12 +1,13 @@
 Polyfit::Application.routes.draw do
   resources :user_favorites
+  get '/signup', to: 'users#new'
 
   resources :regiment_requests
 
   root to: 'static#index'
   get '/test', to: 'static#test'
   get '/style', to: 'static#style'
-  
+
   resources :regiment_exercises
 
   resources :regiments
