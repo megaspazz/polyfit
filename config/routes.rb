@@ -1,13 +1,16 @@
 Polyfit::Application.routes.draw do
+  devise_for :users
+  
   resources :user_favorites
-  get '/signup', to: 'users#new'
-
-  resources :regiment_requests
-
-  root to: 'static#index'
+  #taken care by devise
+  #get '/signup', to: 'users#new'
   get '/test', to: 'static#test'
   get '/style', to: 'static#style'
 
+  root to: 'static#index'
+
+  resources :regiment_requests
+  
   resources :regiment_exercises
 
   resources :regiments

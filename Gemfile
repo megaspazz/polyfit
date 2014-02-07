@@ -55,6 +55,9 @@ end
 # For a secure password
 gem 'bcrypt-ruby'
 
+# For encryption and authentication
+gem 'devise'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
