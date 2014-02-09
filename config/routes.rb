@@ -4,6 +4,14 @@ Polyfit::Application.routes.draw do
   resources :user_favorites
   #taken care by devise
   #get '/signup', to: 'users#new'
+
+  #change default sign_in and sign_out routes in devise
+  devise_scope :user do
+    get "/signin" => "devise/sessions#new"
+    get "/signout" => "devise/sessions#destroy"
+    get "/signup" => "devise/registrations#new"
+  end
+
   get '/test', to: 'static#test'
   get '/style', to: 'static#style'
 
