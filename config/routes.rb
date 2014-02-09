@@ -7,13 +7,20 @@ Polyfit::Application.routes.draw do
 
   #change default sign_in and sign_out routes in devise
   devise_scope :user do
-    get "/signin" => "devise/sessions#new"
-    get "/signout" => "devise/sessions#destroy"
-    get "/signup" => "devise/registrations#new"
+    get "/signin", to: "devise/sessions#new"
+    delete "/signout", to: "devise/sessions#destroy"
+    get "/signup", to: "devise/registrations#new"
   end
 
   get '/test', to: 'static#test'
   get '/style', to: 'static#style'
+
+  get '/about', to: 'static#about'
+  get '/copyright', to: 'static#copyright'
+  get '/privacy', to: 'static#privacy'
+  get '/terms', to: 'static#terms'
+  get '/faq', to: 'static#faq'
+  get '/support', to: 'static#support'
 
   root to: 'static#index'
 
