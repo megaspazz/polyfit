@@ -39,8 +39,6 @@
 #front-page {
   -webkit-font-smoothing: antialiased;
   background-color: #232323;
-  background-position: initial initial;
-  background-repeat: initial initial;
   color: #999999;
   font-family: 'Open Sans', sans-serif;
   font-size: 1em;
@@ -158,7 +156,8 @@
 }
 
 #concierge-welcome {
-  font-size: 41px;
+  font-family: Arial, Open Sans, sans-serif;
+  font-size: 42px;
   font-weight: 800;
   padding: 50px 20px;
 }
