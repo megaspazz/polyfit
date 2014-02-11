@@ -1,13 +1,31 @@
 Polyfit::Application.routes.draw do
+  devise_for :users
+  
   resources :user_favorites
-  get '/signup', to: 'users#new'
+  #taken care by devise
+  #get '/signup', to: 'users#new'
 
-  resources :regiment_requests
+  #change default sign_in and sign_out routes in devise
+  devise_scope :user do
+    get "/signin", to: "devise/sessions#new"
+    delete "/signout", to: "devise/sessions#destroy"
+    get "/signup", to: "devise/registrations#new"
+  end
 
-  root to: 'static#index'
   get '/test', to: 'static#test'
   get '/style', to: 'static#style'
 
+  get '/about', to: 'static#about'
+  get '/copyright', to: 'static#copyright'
+  get '/privacy', to: 'static#privacy'
+  get '/terms', to: 'static#terms'
+  get '/faq', to: 'static#faq'
+  get '/support', to: 'static#support'
+
+  root to: 'static#index'
+
+  resources :regiment_requests
+  
   resources :regiment_exercises
 
   resources :regiments

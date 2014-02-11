@@ -18,15 +18,21 @@ describe User do
 
   it { should be_valid }
 
-  describe "when first name is not present" do
-    before { @user.firstName = " " }
+  #describe "when first name is not present" do
+  #  before { @user.firstName = " " }
+  #  it { should_not be_valid }
+  #end
+
+  #describe "when last name is not present" do
+  #  before { @user.lastName = " " }
+  #  it { should_not be_valid }
+  #end
+
+  describe "when username is not present" do
+    before { @user.username = " "}
     it { should_not be_valid }
   end
 
-  describe "when last name is not present" do
-    before { @user.lastName = " " }
-    it { should_not be_valid }
-  end
 
   describe "when email is not present" do
     before { @user.email = " " }
