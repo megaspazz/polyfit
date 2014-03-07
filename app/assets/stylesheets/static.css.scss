@@ -12,6 +12,7 @@
   margin: 0px auto;
   vertical-align: middle;
   width: 1000px;
+  
 }
 
 #footer a {
@@ -34,28 +35,6 @@
   left: 4%;
   position: relative;
   top: 35%;
-}
-
-#front-page {
-  -webkit-font-smoothing: antialiased;
-  background-color: #232323;
-  color: #999999;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 1em;
-  font-weight: 400;
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  top:0;
-  bottom:0;
-  right:0;
-  left:0;
-  line-height: 1;
-  margin: 0px auto;
-  overflow: auto;
-  vertical-align: middle;
-  white-space: nowrap;
-  text-rendering: optimizelegibility;
 }
 
 .main-nav {
