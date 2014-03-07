@@ -13,8 +13,13 @@
 
   /* ---------------------------------------------------------------- */
 
-  // force the selections to be updated when the page loads
+  // force the selections to be updated when the page loads AND
+  // clear the form from previous selections (if the user clicked back)
   window.onload = function() {
+    for (var i = currOpt; i < TOTAL_OPTS; i++) {
+      var optElt = getOptObj(i);
+      optElt.val('');
+    }
     updateSelections();
   }
 
@@ -249,6 +254,7 @@
   function updateSelections() {
     if (currNode.children.length == 0) {
       getForm().submit();
+      return;
     }
 
     for (var i = 0; ; i++) {
@@ -285,7 +291,7 @@
     <h1 id="concierge-welcome">Welcome to <span style = "color: #00ffff">polyfit</span>!<br>which service would you like today:</h1>
     <div class="grid-options">
       <% for i in 0..5 do %>
-        <div id="<%= "sel#{i}" %>" class="option" onclick="updateOpts(this.id);">
+        <div id="<%= "sel#{i}" %>" class="option" style="display:none" onclick="updateOpts(this.id);">
           <div class="option-icon">
             <img class="option-icon-img" src="url"/>
           </div>
