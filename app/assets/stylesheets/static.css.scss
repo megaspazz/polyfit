@@ -162,6 +162,11 @@
   padding: 50px 20px;
 }
 
+.grid-options {
+  text-align: center;
+  background-color: red;
+}
+
 .option {
   /*-webkit-transition:-webkit-transform 300ms cubic-bezier(0.175, 0.885, 0.32, 1.175);
   transition:-webkit-transform 300ms cubic-bezier(0.175, 0.885, 0.32, 1.175);*/
@@ -184,9 +189,9 @@
 }
 
 .option:hover {
-zoom: 1;
-filter: alpha(opacity=100);
-opacity: 1;
+  zoom: 1;
+  filter: alpha(opacity=100);
+  opacity: 1;
  }
 
 

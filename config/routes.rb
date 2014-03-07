@@ -1,4 +1,6 @@
 Polyfit::Application.routes.draw do
+  root to: 'regiment_requests#new'
+
   devise_for :users
   
   resources :user_favorites
@@ -21,8 +23,6 @@ Polyfit::Application.routes.draw do
   get '/terms', to: 'static#terms'
   get '/faq', to: 'static#faq'
   get '/support', to: 'static#support'
-
-  root to: 'static#index'
 
   resources :regiment_requests
   
