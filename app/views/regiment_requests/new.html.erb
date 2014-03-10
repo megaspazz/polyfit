@@ -13,17 +13,22 @@
 
   /* ---------------------------------------------------------------- */
 
-  // force the selections to be updated when the page loads
+  // force the selections to be updated when the page loads AND
+  // clear the form from previous selections (if the user clicked back)
   window.onload = function() {
+    for (var i = currOpt; i < TOTAL_OPTS; i++) {
+      var optElt = getOptObj(i);
+      optElt.val('');
+    }
     updateSelections();
   }
 
   // declare the Tree datatype
-  function Tree(parent, children, id, data) {
+  function Tree(parent, children, id, desc) {
     this.parent = parent;
     this.children = children || [];
     this.id = id;
-    this.data = data;
+    this.description = desc;
 
     this.addChild = function(tree) {
       this.children.push(tree);
@@ -50,9 +55,9 @@
     var OPT_TREE = new Tree(null, null, "ROOT", null);
 
     // define the first level of the tree
-    var SEL_0_0 = new Tree(OPT_TREE, null, "Quick Workout Now", null);
-    var SEL_0_1 = new Tree(OPT_TREE, null, "Personalized Workout Plan", null);
-    var SEL_0_2 = new Tree(OPT_TREE, null, "Challenge", null);
+    var SEL_0_0 = new Tree(OPT_TREE, null, "Quick Workout Now", "Hit the gym nao son!");
+    var SEL_0_1 = new Tree(OPT_TREE, null, "Personalized Workout Plan", "Get jacked over time...");
+    var SEL_0_2 = new Tree(OPT_TREE, null, "Challenge", "u rdy bro???");
 
     // define the second level of the tree
     var SEL_0_0_0 = new Tree(SEL_0_0, null, "20 minutes", null);
@@ -452,15 +457,18 @@
   function updateSelections() {
     if (currNode.children.length == 0) {
       getForm().submit();
+      return;
     }
 
     for (var i = 0; ; i++) {
       var selElt = getSelObj(i);
+      var desElt = getDesObj(i);
       if (selElt.length == 0) {
         return;
       }
       if (i < currNode.children.length) {
         selElt.text(currNode.children[i].id);
+        desElt.text(currNode.children[i].description);
         selElt.parent().show();
       } else {
         selElt.parent().hide();
@@ -473,9 +481,18 @@
   }
 
   // id can either be a number, or in the form sel#
+  function getSelId(id) {
+    return selId = "#" + ($.isNumeric(id) ? "sel" : "") + id;
+  }
+
   function getSelObj(id) {
-    var selId = "#" + ($.isNumeric(id) ? "sel" : "") + id;
-    return $(selId).find(".sel-text");
+    var selId = getSelId(id);
+    return $(selId).find(".option-title");
+  }
+
+  function getDesObj(id) {
+    var selId = getSelId(id);
+    return $(selId).find(".option-description");
   }
 
   function getForm() {
@@ -488,11 +505,11 @@
     <h1 id="concierge-welcome">Welcome to <span style = "color: #00ffff">polyfit</span>!<br>which service would you like today:</h1>
     <div class="grid-options">
       <% for i in 0..5 do %>
-        <div id="<%= "sel#{i}" %>" class="option" onclick="updateOpts(this.id);">
+        <div id="<%= "sel#{i}" %>" class="option" style="display:none" onclick="updateOpts(this.id);">
           <div class="option-icon">
             <img class="option-icon-img" src="url"/>
           </div>
-          <h2 class="option-title sel-text">Selection <%= "#{i}" %></h2>
+          <h2 class="option-title">Selection <%= "#{i}" %></h2>
           <p class="option-description">Unexpected freetime! I'm going to hit the gym!</p>
         </div>
       <% end %>
